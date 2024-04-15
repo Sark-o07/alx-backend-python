@@ -12,7 +12,7 @@ from unittest.mock import (
     Mock,
     PropertyMock,
     patch,
-) 
+)
 from parameterized import parameterized, parameterized_class
 
 
@@ -45,7 +45,7 @@ class TestGithubOrgClient(unittest.TestCase):
             mock_org.return_value = {
                 'repos_url': "https://api.github.com/users/google/repos",
             }
-            
+
             self.assertEqual(
                 GithubOrgClient("google")._public_repos_url,
                 "https://api.github.com/users/google/repos",
@@ -91,7 +91,7 @@ class TestGithubOrgClient(unittest.TestCase):
                 },
             ]
         }
-        
+
         mock_get_json.return_value = test_payload["repos"]
         with patch(
             "client.GithubOrgClient._public_repos_url",
@@ -112,7 +112,8 @@ class TestGithubOrgClient(unittest.TestCase):
         ({"license": {'key': "my_license"}}, "my_license", True),
         ({"license": {'key': "other_license"}}, "my_license", False),
     ])
-    def test_has_license(self, repo: Dict, license_key: str, expected: bool) -> None:
+    def test_has_license(self, repo: Dict, license_key: str,
+                         expected: bool) -> None:
         """Test for the `has_license` method."""
         test_response = GithubOrgClient.has_license(repo, license_key)
         self.assertEqual(test_response, expected)
