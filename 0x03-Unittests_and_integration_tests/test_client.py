@@ -151,7 +151,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             self.expected_repos,
         )
 
-    def test_pub_repos_with_license(self, license="apache-2.0"):
+    def test_public_repos_with_license(self, license="apache-2.0"):
         """Tests the `public_repos` method with an argument."""
         self.assertEqual(
             GithubOrgClient("google").public_repos(license),
